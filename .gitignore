@@ -45,3 +45,7 @@ app.*.map.json
 /android/app/release
 
 personal_picture.jpg
+google-services.json
+ios/
+firebase.
+firebase_options.dart

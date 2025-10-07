@@ -2,7 +2,7 @@
 this app is test chat app for chating with two diffrent side 
 
 ## tools
-.flutter
-.dart
-.firebase authentication
+.flutter\n
+.dart\n
+.firebase authentication\n
 .firestore database

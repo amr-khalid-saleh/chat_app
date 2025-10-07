@@ -46,6 +46,6 @@ app.*.map.json
 
 personal_picture.jpg
 google-services.json
-ios/
-firebase.
-firebase_options.dart
+/ios/
+firebase.json
+lib/firebase_options.dart

@@ -8,7 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 
-import '../../../helper/show_snack_bar.dart';
+import '../../../app/show_snack_bar.dart';
 import '../chat_screen/chat_screen.dart';
 
 class RegisterScreen extends StatefulWidget {
@@ -71,7 +71,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       setState(() {});
                       try {
                         await registerUser();
-                        Navigator.pushReplacementNamed(context,ChatScreen.id);
+                        Navigator.pushReplacementNamed(context,ChatScreen.id,arguments: email);
                       } on FirebaseAuthException catch (e) {
                         if (e.code == 'weak-password') {
                           showSnackBar(

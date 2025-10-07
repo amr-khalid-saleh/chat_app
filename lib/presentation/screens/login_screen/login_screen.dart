@@ -10,7 +10,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 
-import '../../../helper/show_snack_bar.dart';
+import '../../../app/show_snack_bar.dart';
 import '../chat_screen/chat_screen.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -73,6 +73,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   onChange: (value) {
                     password = value;
                   },
+                  obscureText: true,
                 ),
                 SizedBox(height: 20),
                 CustomButton(
@@ -83,7 +84,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       setState(() {});
                       try {
                         await loginUser();
-                        Navigator.pushReplacementNamed(context, ChatScreen.id);
+                        Navigator.pushReplacementNamed(context, ChatScreen.id,arguments: email);
                       } on FirebaseAuthException catch (e) {
                         showSnackBar(
                           context,

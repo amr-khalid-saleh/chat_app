@@ -8,7 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 
-import '../../../app/show_snack_bar.dart';
+import '../../../app/functions.dart';
 import '../chat_screen/chat_screen.dart';
 
 class RegisterScreen extends StatefulWidget {

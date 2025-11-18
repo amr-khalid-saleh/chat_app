@@ -43,7 +43,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 Spacer(flex: 1),
                 Row(
                   children: [
-                    Text('Register', style: TextStyleManager.White24ExtraBold.copyWith(fontSize: 20)),
+                    Text(
+                      'Register',
+                      style: TextStyleManager.White24ExtraBold.copyWith(
+                        fontSize: 20,
+                      ),
+                    ),
                   ],
                 ),
                 SizedBox(height: 12),
@@ -69,7 +74,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       setState(() {});
                       try {
                         await registerUser();
-                        Navigator.pushReplacementNamed(context,ChatScreen.id,arguments: email);
+                        Navigator.pushReplacementNamed(
+                          context,
+                          ChatScreen.id,
+                          arguments: email,
+                        );
                       } on FirebaseAuthException catch (e) {
                         if (e.code == 'weak-password') {
                           showSnackBar(
@@ -119,7 +128,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
   }
 
   Future<void> registerUser() async {
-    UserCredential user = await FirebaseAuth.instance
-        .createUserWithEmailAndPassword(email: email!, password: password!);
+    await FirebaseAuth.instance.createUserWithEmailAndPassword(
+      email: email!,
+      password: password!,
+    );
   }
 }

@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:chat_app/data/models/message_model.dart';
 import 'package:chat_app/presentation/resources/color_manager.dart';
 import 'package:chat_app/presentation/resources/text_style_manager.dart';

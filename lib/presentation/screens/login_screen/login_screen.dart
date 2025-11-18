@@ -47,17 +47,17 @@ class _LoginScreenState extends State<LoginScreen> {
                   borderRadius: BorderRadius.circular(90),
                   child: Image(
                     image: AssetImage(ImageManager.personal_picture),
-                    width: 180,
-                    height: 180,
+                    width: 155,
+                    height: 155,
                     fit: BoxFit.cover,
                   ),
                 ),
                 const SizedBox(height: 8.0),
-                Text('Chat App', style: TextStyleManager.White30ExtraBold),
+                Text('Chat App', style: TextStyleManager.White24ExtraBold),
                 Spacer(flex: 1),
                 Row(
                   children: [
-                    Text('login', style: TextStyleManager.White24ExtraBold),
+                    Text('login', style: TextStyleManager.White24ExtraBold.copyWith(fontSize: 20)),
                   ],
                 ),
                 SizedBox(height: 12),

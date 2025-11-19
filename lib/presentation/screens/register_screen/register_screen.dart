@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import '../../../app/functions.dart';
+import '../../../data/cubits/chat_cubit/chat_cubit.dart';
 import '../../../data/cubits/register_cubit/register_state.dart';
 import '../chat_screen/chat_screen.dart';
 
@@ -30,6 +31,7 @@ class RegisterScreen extends StatelessWidget {
           if (state is RegisterLoadingState) {
             isLoading = true;
           } else if (state is RegisterSuccessState) {
+            BlocProvider.of<ChatCubit>(context).getMessages();
             Navigator.pushNamed(context, ChatScreen.id);
             isLoading = false;
           } else if (state is RegisterFailureState) {

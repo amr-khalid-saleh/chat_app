@@ -4,7 +4,7 @@ class MessageModel {
 
   MessageModel({required this.body, required this.id});
 
-  factory MessageModel.fromjson(json) {
+  factory MessageModel.fromJson(json) {
     return MessageModel(body: json['body'],id: json['id']);
   }
 }

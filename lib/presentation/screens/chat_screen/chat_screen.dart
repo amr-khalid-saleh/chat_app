@@ -3,22 +3,15 @@ import 'package:chat_app/presentation/resources/color_manager.dart';
 import 'package:chat_app/presentation/resources/text_style_manager.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-
 import '../../components/chat_bubble.dart';
 
-class ChatScreen extends StatefulWidget {
-  const ChatScreen({super.key});
+class ChatScreen extends StatelessWidget {
+  ChatScreen({super.key});
 
-  static String id = 'ChatScreen';
-
-  @override
-  State<ChatScreen> createState() => _ChatScreenState();
-}
-
-class _ChatScreenState extends State<ChatScreen> {
   CollectionReference messages = FirebaseFirestore.instance.collection(
     'messages',
   );
+  static String id = 'ChatScreen';
 
   TextEditingController textEditingController = TextEditingController();
   ScrollController scrollController = ScrollController();

@@ -1,27 +1,20 @@
-import 'dart:developer';
 import 'package:chat_app/data/cubits/register_cubit/register_cubit.dart';
 import 'package:chat_app/presentation/components/custom_button.dart';
 import 'package:chat_app/presentation/components/custom_text_field.dart';
 import 'package:chat_app/presentation/resources/color_manager.dart';
 import 'package:chat_app/presentation/resources/text_style_manager.dart';
 import 'package:flutter/material.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import '../../../app/functions.dart';
 import '../../../data/cubits/register_cubit/register_state.dart';
 import '../chat_screen/chat_screen.dart';
 
-class RegisterScreen extends StatefulWidget {
+class RegisterScreen extends StatelessWidget {
   RegisterScreen({super.key});
 
   static String id = 'RegisterScreen';
 
-  @override
-  State<RegisterScreen> createState() => _RegisterScreenState();
-}
-
-class _RegisterScreenState extends State<RegisterScreen> {
   String? email, password;
 
   GlobalKey<FormState> formKey = GlobalKey();

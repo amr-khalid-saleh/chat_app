@@ -1,4 +1,5 @@
 import 'package:chat_app/data/cubits/login_cubit/login_cubit.dart';
+import 'package:chat_app/data/cubits/register_cubit/register_cubit.dart';
 import 'package:chat_app/presentation/screens/chat_screen/chat_screen.dart';
 import 'package:chat_app/presentation/screens/login_screen/login_screen.dart';
 import 'package:chat_app/presentation/screens/register_screen/register_screen.dart';
@@ -18,8 +19,11 @@ class ChatApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => LoginCubit(),
+    return MultiBlocProvider(
+      providers: [
+            BlocProvider(create: (context)=> LoginCubit()),
+            BlocProvider(create: (context)=> RegisterCubit()),
+      ],
       child: MaterialApp(
         routes: {
           LoginScreen.id: (context) => LoginScreen(),

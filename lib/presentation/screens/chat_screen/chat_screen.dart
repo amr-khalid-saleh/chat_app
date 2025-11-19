@@ -1,5 +1,6 @@
 import 'package:chat_app/data/models/message_model.dart';
 import 'package:chat_app/presentation/resources/color_manager.dart';
+import 'package:chat_app/presentation/resources/constant.dart';
 import 'package:chat_app/presentation/resources/text_style_manager.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -9,7 +10,7 @@ class ChatScreen extends StatelessWidget {
   ChatScreen({super.key});
 
   CollectionReference messages = FirebaseFirestore.instance.collection(
-    'messages',
+    kMessageCollection,
   );
   static String id = 'ChatScreen';
 
@@ -21,7 +22,7 @@ class ChatScreen extends StatelessWidget {
     var email = ModalRoute.of(context)!.settings.arguments;
     return StreamBuilder<QuerySnapshot>(
       //DocumentSnapshot
-      stream: messages.orderBy('createdAt', descending: true).snapshots(),
+      stream: messages.orderBy(kCreatedAt, descending: true).snapshots(),
       //.doc('a6lHVZVYt1Wxyga2VCrx')
       builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
         if (snapshot.hasData) {
@@ -59,8 +60,8 @@ class ChatScreen extends StatelessWidget {
                     controller: textEditingController, //للتحكم في مجال الكتابه
                     onSubmitted: (value) {
                       messages.add({
-                        "body": value,
-                        "createdAt": DateTime.now(),
+                        kBody: value,
+                        kCreatedAt: DateTime.now(),
                         "id": email,
                       });
                       textEditingController.clear(); //لافراغ مكان الكتابه

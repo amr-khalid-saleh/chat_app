@@ -1,9 +1,31 @@
-import 'package:chat_app/data/cubits/register_cubit/register_state.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'auth_state.dart';
 
-class RegisterCubit extends Cubit<RegisterState> {
-  RegisterCubit() : super(RegisterInitialState());
+class AuthCubit extends Cubit<AuthState> {
+  AuthCubit() : super(AuthInitialState());
+
+  Future<void> loginUser({
+    required String email,
+    required String password,
+  }) async {
+    emit(LoginLoadingState());
+    try {
+      await FirebaseAuth.instance.signInWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
+      emit(LoginSuccessState());
+    } on FirebaseAuthException catch (ex) {
+      if (ex.code == "user-not-found") {
+        emit(LoginFailureState(errMessage: "user not found"));
+      } else if (ex.code == "wrong-password") {
+        emit(LoginFailureState(errMessage: "wrong password"));
+      }
+    } catch (e) {
+      emit(LoginFailureState(errMessage: "something went wrong"));
+    }
+  }
 
   Future<void> registerUser({
     required String email,

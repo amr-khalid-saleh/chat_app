@@ -1,4 +1,3 @@
-import 'package:chat_app/data/cubits/register_cubit/register_cubit.dart';
 import 'package:chat_app/presentation/components/custom_button.dart';
 import 'package:chat_app/presentation/components/custom_text_field.dart';
 import 'package:chat_app/presentation/resources/color_manager.dart';
@@ -7,8 +6,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import '../../../app/functions.dart';
+import '../../../data/cubits/auth_cubit/auth_cubit.dart';
+import '../../../data/cubits/auth_cubit/auth_state.dart';
 import '../../../data/cubits/chat_cubit/chat_cubit.dart';
-import '../../../data/cubits/register_cubit/register_state.dart';
 import '../chat_screen/chat_screen.dart';
 
 class RegisterScreen extends StatelessWidget {
@@ -26,7 +26,7 @@ class RegisterScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: ColorManager.background_color,
-      body: BlocConsumer<RegisterCubit, RegisterState>(
+      body: BlocConsumer<AuthCubit, AuthState>(
         listener: (context, state) {
           if (state is RegisterLoadingState) {
             isLoading = true;
@@ -81,7 +81,7 @@ class RegisterScreen extends StatelessWidget {
                       text: 'Register',
                       onTap: () async {
                         if (formKey.currentState!.validate()) {
-                          BlocProvider.of<RegisterCubit>(
+                          BlocProvider.of<AuthCubit>(
                             context,
                           ).registerUser(email: email!, password: password!);
                         }

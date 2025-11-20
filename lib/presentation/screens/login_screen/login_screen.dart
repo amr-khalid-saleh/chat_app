@@ -1,6 +1,4 @@
 import 'package:chat_app/data/cubits/chat_cubit/chat_cubit.dart';
-import 'package:chat_app/data/cubits/login_cubit/login_cubit.dart';
-import 'package:chat_app/data/cubits/login_cubit/login_state.dart';
 import 'package:chat_app/presentation/components/custom_button.dart';
 import 'package:chat_app/presentation/components/custom_text_field.dart';
 import 'package:chat_app/presentation/resources/color_manager.dart';
@@ -11,6 +9,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import '../../../app/functions.dart';
+import '../../../data/cubits/auth_cubit/auth_cubit.dart';
+import '../../../data/cubits/auth_cubit/auth_state.dart';
 import '../chat_screen/chat_screen.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -27,7 +27,7 @@ class LoginScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: ColorManager.background_color,
-      body: BlocConsumer<LoginCubit, LoginState>(
+      body: BlocConsumer<AuthCubit, AuthState>(
         listener: (context, state) {
           if (state is LoginLoadingState) {
             isLoading = true;
@@ -92,7 +92,7 @@ class LoginScreen extends StatelessWidget {
                     text: 'login',
                     onTap: () async {
                       if (formKey.currentState!.validate()) {
-                        BlocProvider.of<LoginCubit>(
+                        BlocProvider.of<AuthCubit>(
                           context,
                         ).loginUser(email: email!, password: password!);
                       }
